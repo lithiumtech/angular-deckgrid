@@ -154,6 +154,9 @@ angular.module('akoenig.deckgrid').factory('Deckgrid', [
                 return $log.error('angular-deckgrid: No CSS configuration found (see ' +
                                    'https://github.com/akoenig/angular-deckgrid#the-grid-configuration)');
             }
+            
+            console.log('layout');
+            console.log(this.$$scope.layout);
 
             this.$$scope.columns = [];
 
