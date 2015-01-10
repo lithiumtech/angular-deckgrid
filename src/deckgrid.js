@@ -155,8 +155,8 @@ angular.module('akoenig.deckgrid').factory('Deckgrid', [
                                    'https://github.com/akoenig/angular-deckgrid#the-grid-configuration)');
             }
             
-            console.log('layout');
-            console.log(this.$$scope.layout);
+            $log.log('layout');
+            $log.log(this.$$scope.layout);
 
             this.$$scope.columns = [];
 
