@@ -45,7 +45,7 @@ angular.module('akoenig.deckgrid').factory('DeckgridDescriptor', [
     '$window',
     '$q',
 
-    function initialize (Deckgrid, $templateCache, $window, $q) {
+    function initialize (Deckgrid, $templateCache, $window, $q, $timeout) {
 
         'use strict';
 
@@ -151,7 +151,12 @@ angular.module('akoenig.deckgrid').factory('DeckgridDescriptor', [
                 }
             });
             styleReady.promise.then(function() {
-                self.$$deckgrid = Deckgrid.create(scope, elem[0]);
+                console.log('before: ' + $window.getComputedStyle(elem[0], null).width);
+
+                $timeout(function() {
+                    console.log('after' + $window.getComputedStyle(elem[0], null).width);
+                    self.$$deckgrid = Deckgrid.create(scope, elem[0]);
+                });
             });
         };
 
@@ -230,7 +235,7 @@ angular.module('akoenig.deckgrid').factory('Deckgrid', [
 
                 self.$$watchers.push(onDestroy);
             });
-            
+
             mql = $window.matchMedia('(orientation: portrait)');
             mql.addListener(self.$$onMediaQueryChange.bind(self));
 
