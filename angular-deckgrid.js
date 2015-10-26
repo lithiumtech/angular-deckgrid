@@ -44,6 +44,7 @@ angular.module('akoenig.deckgrid').factory('DeckgridDescriptor', [
     '$templateCache',
     '$window',
     '$q',
+    '$timeout',
 
     function initialize (Deckgrid, $templateCache, $window, $q, $timeout) {
 
