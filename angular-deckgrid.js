@@ -152,10 +152,9 @@ angular.module('akoenig.deckgrid').factory('DeckgridDescriptor', [
                 }
             });
             styleReady.promise.then(function() {
-                console.log('before: ' + $window.getComputedStyle(elem[0], null).width);
-
+                // Fixes an issue in IE where the width of the elem is accessed before the page is loaded.
+                // So, it would be 'auto' instead of resolved pixel value.
                 $timeout(function() {
-                    console.log('after' + $window.getComputedStyle(elem[0], null).width);
                     self.$$deckgrid = Deckgrid.create(scope, elem[0]);
                 });
             });
