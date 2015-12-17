@@ -1,3 +1,4 @@
+/*! angular-deckgrid (v0.5.0) - Copyright: 2013 - 2014, André König (andre.koenig@posteo.de) - MIT */
 /*
  * angular-deckgrid
  *
@@ -11,9 +12,7 @@
  *
  */
 
-angular.module('akoenig.deckgrid', [
-    'li.services.media.matchmedia-utils'
-]);
+angular.module('akoenig.deckgrid', []);
 
 angular.module('akoenig.deckgrid').directive('deckgrid', [
 
@@ -186,9 +185,8 @@ angular.module('akoenig.deckgrid').factory('Deckgrid', [
 
     '$window',
     '$log',
-    '$liMatchmediaUtils',
 
-    function initialize ($window, $log, $liMatchmediaUtils) {
+    function initialize ($window, $log) {
 
         'use strict';
 
@@ -238,7 +236,7 @@ angular.module('akoenig.deckgrid').factory('Deckgrid', [
                 self.$$watchers.push(onDestroy);
             });
 
-            mql = $liMatchmediaUtils.matchMedia('(orientation: portrait)');
+            mql = $window.matchMedia('(orientation: portrait)');
             mql.addListener(self.$$onMediaQueryChange.bind(self));
 
         }
@@ -272,8 +270,7 @@ angular.module('akoenig.deckgrid').factory('Deckgrid', [
             }
 
             function hasDeckgridStyles (rule) {
-                // IE 9 treats .lia-deckgrid[deckgrid]::before as [deckgrid].lia-deckgrid::before
-                var regexe   = /(\[(\w*-)?deckgrid\]|\[(\w*-)?deckgrid\][\.#][\w-]*)::?before/g, // short notation of  \[(\w*-)?deckgrid\]::?before|\[(\w*-)?deckgrid\][\.#][\w-]*::?before
+                var regexe   = /\[(\w*-)?deckgrid\]::?before/g,
                     i        = 0,
                     selector = '';
 
@@ -299,7 +296,7 @@ angular.module('akoenig.deckgrid').factory('Deckgrid', [
 
                 angular.forEach(rules, function inRuleIteration (rule) {
                     if (hasDeckgridStyles(rule)) {
-                        mediaQueries.push($liMatchmediaUtils.matchMedia(rule.media.mediaText));
+                        mediaQueries.push($window.matchMedia(rule.media.mediaText));
                     }
                 });
             });
