@@ -145,7 +145,7 @@ angular.module('akoenig.deckgrid').factory('DeckgridDescriptor', [
            domWatch = scope.$watch(function() {
                 return $window.getComputedStyle(elem[0], ':before').content;
             }, function(content) {
-                if (content !== '') {
+                if (content !== '' && content !== 'none') {
                     styleReady.resolve();
                     // Clear the watcher once element is initialized
                     domWatch();
